@@ -1,26 +1,47 @@
 {
-  "name": "WCM-Prototype",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "react-native-scripts": "1.14.0",
-    "jest-expo": "~27.0.0",
-    "react-test-renderer": "16.3.1"
-  },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "name": "wcm",
+  "version": "1.0.0",
+  "description": "WestCoast MegaGames Prototype",
+  "main": "index.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "jest"
+    "build": "npm run build-sass && webpack && npm run copy-res",
+    "build-dev": "npm run build-sass && npm run webpack && npm run copy-res",
+    "webpack": "webpack --config webpack.config.dev.js",
+    "build-sass": "node-sass --include-path scss ./src/index.scss ./mobile/www/css/index.css --output-style compressed",
+    "copy-res": "cp -a ./src/res/. ./mobile/www/res/"
   },
-  "jest": {
-    "preset": "jest-expo"
+  "repository": {
+    "type": "git",
+    "url": "git+"
   },
+  "keywords": [
+    "megagames",
+    "mobile",
+    "hybrid"
+  ],
+  "author": "James Garbagnati",
+  "license": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
   "dependencies": {
-    "expo": "^27.0.1",
-    "react": "16.3.1",
-    "react-native": "~0.55.2"
+    "inferno": "^5.6.1",
+    "inferno-component": "^5.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-inferno": "^5.1.0",
+    "babel-preset-env": "^1.7.0",
+    "html-minifier-loader": "^1.4.1",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.3",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^7.1.0",
+    "script-loader": "^0.7.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
   }
 }

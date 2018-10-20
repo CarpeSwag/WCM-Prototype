@@ -1,0 +1,140 @@
+$login-background-slash-back: #6dcaff;
+$login-background-slash-mid: #129ff8;
+$login-background-slash-front: #0063c9;
+$login-background: #fff;
+$login-font: #414141;
+
+#login-root {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: $login-background;;
+	
+	.login-background-image-cntr {
+		position: absolute;
+		height: 100%;
+		width: 50%;
+		background: #000;
+		
+		.login-background-image {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			background-size: cover;
+			background-repeat: no-repeat;
+			animation-name: fade-in;
+			animation-duration: 1s;
+			
+			&.rotate-0 {
+				background-image: url('../res/login/rotate_0.jpg');
+				background-position: 50%;
+			}
+			
+			&.rotate-1 {
+				background-image: url('../res/login/rotate_1.jpg');
+				background-position: 25%;
+			}
+			
+			&.rotate-2 {
+				background-image: url('../res/login/rotate_2.jpg');
+				background-position: 55%;
+			}
+			
+			&.rotate-3 {
+				background-image: url('../res/login/rotate_3.jpg');
+				background-position: 100%;
+			}
+		}
+	}
+	
+	.login-background {
+		position: absolute;
+		left: 25%;
+		width: 100%;
+		height: calc(100% + 10px);
+		top: -10px;
+		border-radius: 10px;
+		@include transform(skewX(20deg));
+		background: $login-background-slash-back;
+		
+		.login-background-inner {
+			background: $login-background-slash-mid;
+			left: 20px;
+			
+			&:before, &:after {
+				content: '';
+			}
+			
+			&:before {
+				background: $login-background-slash-front;
+				left: 20px;
+			}
+			
+			&:after {
+				background: $login-background;
+				left: 40px;
+			}
+		}
+		
+		.login-background-inner, .login-background-inner:before,
+		.login-background-inner:after {
+			position: absolute;
+			width: 100%;
+			height: calc(100% + 10px);
+			top: -10px;
+			border-radius: 10px;
+		}
+	}
+	
+	.login-cntr-outer {
+		position: absolute;
+		left: 500px;
+		width: calc(100% - 500px);
+		height: 100%;
+		
+		.login-cntr {
+			position: absolute;
+			left: 40%;
+			top: 50%;
+			@include transform(translate(-50%, -50%));
+			width: 400px;
+			height: 260px;
+			
+			.logo-cntr {
+				background: url('../res/logo.png');
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
+				height: 55px;
+				width: 400px;
+			}
+			
+			.bar {
+				height: 20px;
+			}
+			
+			.input-cntr #login-input-username {
+				margin-bottom: 10px;
+			}
+			
+			.no-acct {
+				user-select: none;
+			}
+			
+			.register {
+				color: $login-background-slash-mid;
+				cursor: pointer;
+				user-select: none;
+				
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+@keyframes fade-in {
+   0% {opacity: 0;}
+   100% {opacity: 1;}
+}
