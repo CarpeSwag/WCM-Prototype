@@ -1,0 +1,91 @@
+$transition-time: 0.5s;
+
+.incoming {
+	top: 100%;
+}
+
+.freeze {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.transition-in-none {
+	top: 0%;
+}
+
+.transition-in-up {
+	animation: animateInUp $transition-time;
+}
+
+.transition-in-down {
+	animation: animateInDown $transition-time;
+}
+
+.transition-in-left {
+	animation: animateInLeft $transition-time;
+}
+
+.transition-in-right {
+	animation: animateInRight $transition-time;
+}
+
+.transition-out-none {
+	top: -100%;
+}
+
+.transition-out-up {
+	animation: animateOutUp $transition-time;
+}
+
+.transition-out-down {
+	animation: animateOutDown $transition-time;
+}
+
+.transition-out-left {
+	animation: animateOutLeft $transition-time;
+}
+
+.transition-out-right {
+	animation: animateOutRight $transition-time;
+}
+
+@keyframes animateInUp {
+	0%   {@include transform(translate(0%, 100%));}
+	100% {@include transform(translate(0%, 0%));}
+}
+
+@keyframes animateInDown {
+	0%   {@include transform(translate(0%, -100%));}
+	100% {@include transform(translate(0%, 0%));}
+}
+
+@keyframes animateInLeft {
+	0%   {@include transform(translate(100%, 0%));}
+	100% {@include transform(translate(0%, 0%));}
+}
+
+@keyframes animateInRight {
+	0%   {@include transform(translate(-100%, 0%));}
+	100% {@include transform(translate(0%, 0%));}
+}
+
+@keyframes animateOutUp {
+	0%   {@include transform(translate(0%, 0%));}
+	100% {@include transform(translate(0%, -100%));}
+}
+
+@keyframes animateOutDown {
+	0%   {@include transform(translate(0%, 0%));}
+	100% {@include transform(translate(0%, 100%));}
+}
+
+@keyframes animateOutLeft {
+	0%   {@include transform(translate(0%, 0%));}
+	100% {@include transform(translate(-100%, 0%));}
+}
+
+@keyframes animateOutRight {
+	0%   {@include transform(translate(0%, 0%));}
+	100% {@include transform(translate(100%, 0%));}
+}

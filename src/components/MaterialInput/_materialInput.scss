@@ -1,0 +1,39 @@
+.material-input {
+	height: 40px;
+	
+	.placeholder {
+		font-weight: normal;
+		margin: 0;
+		user-select: none;
+		pointer-events: none;
+		transition: margin-top 0.25s, margin-left 0.25s, font-size 0.25s, color 0.25s;
+		color: #bbb;
+		font-size: 15px;
+		margin-top: -23px;
+		margin-left: 4px;
+		
+		&.focused, &.active {
+			font-size: 10px;
+			margin-top: -38px;
+			margin-left: 0px;
+			color: $primary-color;
+		}
+	}
+
+	input {
+		margin-top: 13px;
+		margin-left: 0px;
+		width: calc(100% - 8px);
+		border: none;
+		padding: 4px;
+		border-bottom: 1px solid #bbb;
+		
+		&:focus {
+			outline: none;
+		}
+		
+		&.focused, &.active {
+			border-bottom: 2px solid $primary-color;
+		}
+	}
+}
