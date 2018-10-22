@@ -1,25 +1,32 @@
 import Component from 'inferno-component';
 
-export default class MaterialInputContainer extends Component {
+const Input = ({id, placeholder, className, type, value, onFocus, onBlur, onInput}) => (
+	<div className='material-input' id={id}>
+		<input placeholder=''
+			className={className}
+			type={type}
+			value={value}
+			onFocus={evt => onFocus(evt)}
+			onBlur={evt => onBlur(evt)}
+			onInput={evt => onInput(evt)} />
+		<div className={'placeholder ' + className}>
+			{placeholder}
+		</div>
+	</div>
+);
+
+export default class MaterialInput extends Component {
 	constructor(props) {
 		super(props);
 		
-		let active = this.props.value != '';
-		let classes = (active)? 'active': '';
-		
 		this.state = {
-			inputClasses: classes,
 			focused: false
 		}
 	}
 	
-	componentDidUpdate() {
-		let active = this.props.value != '';
-		let classes = ((this.state.focused)? 'focused ': '')
-			+ ((active)? 'active': '');
-		if (this.state.inputClasses != classes) {
-			this.setState({inputClasses: classes});
-		}
+	shouldComponentUpdate(nextProps, nextState) {
+		return this.props.value != nextProps.value
+			|| this.state.focuses != nextState.focused;
 	}
 	
 	onFocus(evt) {
@@ -35,12 +42,15 @@ export default class MaterialInputContainer extends Component {
 	}
 	
 	render() {
-		let type = (this.props.isPassword !== undefined)? 'password': 'text';
+		const classes = ((this.state.focused)? 'focused ': '')
+			+ ((this.props.value !== '')? 'active': '');
+		const type = (this.props.isPassword)? 'password': 'text';
+		
 		return (
-			<MaterialInput
+			<Input
 				placeholder={this.props.placeholder}
 				id={this.props.id}
-				inputClasses={this.state.inputClasses}
+				className={classes}
 				type={type}
 				value={this.props.value}
 				onFocus={evt => this.onFocus(evt)}
@@ -49,19 +59,3 @@ export default class MaterialInputContainer extends Component {
 		);
 	}
 }
-
-const MaterialInput = ({id, placeholder, inputClasses, type, value, onFocus, onBlur, onInput}) => (
-	<div className='material-input' id={id}>
-		<input placeholder=''
-			className={inputClasses}
-			type={type}
-			value={value}
-			onFocus={evt => onFocus(evt)}
-			onBlur={evt => onBlur(evt)}
-			onInput={evt => onInput(evt)} />
-		<div className={'placeholder ' + inputClasses}>
-			{placeholder}
-		</div>
-	</div>
-);
-
