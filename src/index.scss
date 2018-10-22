@@ -36,8 +36,8 @@ body, html, #root {
 }
 
 // LoginView
-@import "views/LoginView/loginView";
+@import "components/Login/login";
 
 // Components
-@import "components/MaterialButton/materialButton";
-@import "components/MaterialInput/materialInput";
+@import "components/UI/Material/Button/button";
+@import "components/UI/Material/Input/input";

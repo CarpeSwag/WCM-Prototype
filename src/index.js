@@ -1,6 +1,6 @@
 import {render} from 'inferno';
 import Component from 'inferno-component';
-import LoginView from './views/LoginView/LoginView';
+import LoginContainer from './components/Login/Container';
 
 /* global ble  */
 /* jshint browser: true , devel: true*/
@@ -15,7 +15,7 @@ export default class App extends Component {
 		
 		this.state = {
 			animation: 'left',
-			currPage: (<LoginView
+			currPage: (<LoginContainer
 				changePage={this.changePage}
 				animation='' />),
 			frozen: null,
