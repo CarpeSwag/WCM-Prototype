@@ -10,10 +10,13 @@ const Button = ({children, id, label, setRef, onClick}) => (
 	</div>
 );
 
-const Click = ({x, y}) => (
-	<div className='click'
-		style={{left: `${x}px`, top: `${y}px`}} />
-);
+const clickAnimation = (x, y) => {
+	let div = document.createElement("div");
+	div.className  = 'click';
+	div.style.left = `${x}px`;
+	div.style.top  = `${y}px`;
+	return div;
+};
 
 export default class MaterialButton extends Component {
 	constructor(props) {
@@ -39,24 +42,12 @@ export default class MaterialButton extends Component {
 		const rect = this.node.getBoundingClientRect();
 		const x = evt.clientX - rect.left;
 		const y = evt.clientY - rect.top;
-		
-		let clicks = this.state.clicks.slice();
-		clicks.push(
-			<Click x={x} y={y} />
-		);
-		this.setState({
-			clicks: clicks
-		});
+		this.node.appendChild(clickAnimation(x, y));
 		
 		this.timeouts.push(setTimeout(() => {
-			// Get rid of reference to timer
+			// Get rid of reference to timer and delete click
 			this.timeouts = this.timeouts.slice(1);
-			
-			if (this.timeouts.length == 0 || this.state.clicks.length > CLICK_CAP) {
-				// Not super efficient, but I was having issues with the DOM removing keyed elements incorrectly
-				// TODO - Look into this
-				this.setState({clicks: []});
-			}
+			this.node.removeChild(this.node.childNodes[1]);
 		}, 1500));
 	}
 	
