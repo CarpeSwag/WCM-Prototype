@@ -1,7 +1,11 @@
 import {render} from 'inferno';
+import {Provider} from 'inferno-redux';
+import store from './redux/store';
 import App from './components/App';
 
 render(
-	<App />,
+	<Provider store={store}>
+		<App />
+	</Provider>,
 	document.getElementById('root')
 );

@@ -18,7 +18,7 @@ const clickAnimation = (x, y) => {
 	return div;
 };
 
-export default class MaterialButton extends Component {
+class MaterialButton extends Component {
 	constructor(props) {
 		super(props);
 		
@@ -63,3 +63,5 @@ export default class MaterialButton extends Component {
 		);
 	}
 }
+
+export default MaterialButton;

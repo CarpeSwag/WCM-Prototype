@@ -15,7 +15,7 @@ const Input = ({id, placeholder, className, type, value, onFocus, onBlur, onInpu
 	</div>
 );
 
-export default class MaterialInput extends Component {
+class MaterialInput extends Component {
 	constructor(props) {
 		super(props);
 		
@@ -59,3 +59,5 @@ export default class MaterialInput extends Component {
 		);
 	}
 }
+
+export default MaterialInput;
