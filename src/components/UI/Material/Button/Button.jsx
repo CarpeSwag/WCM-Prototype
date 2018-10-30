@@ -26,7 +26,12 @@ class MaterialButton extends Component {
 			clicks: []
 		}
 		
+		this.active = false;
 		this.timeouts = [];
+	}
+	
+	componentDidMount() {
+		this.active = true;
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
@@ -34,6 +39,8 @@ class MaterialButton extends Component {
 	}
 	
 	componentDidUnmount() {
+		this.active = false;
+		this.node = null;
 		for (let i = 0; i < this.timeouts.length; ++i)
 			clearTimeout(this.timeouts[i]);
 	}
@@ -45,10 +52,14 @@ class MaterialButton extends Component {
 		this.node.appendChild(clickAnimation(x, y));
 		
 		this.timeouts.push(setTimeout(() => {
-			// Get rid of reference to timer and delete click
-			this.timeouts = this.timeouts.slice(1);
-			this.node.removeChild(this.node.childNodes[1]);
+			if (this.active && this.node !== null) {
+				// Get rid of reference to timer and delete click
+				this.timeouts = this.timeouts.slice(1);
+				this.node.removeChild(this.node.childNodes[1]);
+			}
 		}, 1500));
+		
+		this.props.onClick(evt);
 	}
 	
 	render() {
