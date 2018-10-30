@@ -1,5 +1,6 @@
 import Component from 'inferno-component';
 import View from './View';
+import DashboardContainer from '../Dashboard/Container';
 
 const IMAGE_CAP = 4;
 
@@ -59,7 +60,7 @@ class LoginContainer extends Component {
 	}
 	
 	login(evt) {
-		
+		this.props.changeView(DashboardContainer);
 	}
 	
 	register(evt) {

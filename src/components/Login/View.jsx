@@ -1,4 +1,3 @@
-import Component from 'inferno-component';
 import MaterialInput from '../UI/Material/Input/Input';
 import MaterialButton from '../UI/Material/Button/Button';
 
@@ -31,7 +30,7 @@ const LoginView = ({username, password, bgImages, onUsername, onPassword, onLogi
 					
 				</span>
 				<div className='bar' />
-				<MaterialButton onClick={(evt) => onLogin(evt)}>
+				<MaterialButton onClick={onLogin}>
 					Login
 				</MaterialButton>
 				
