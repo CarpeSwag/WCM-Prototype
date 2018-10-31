@@ -1,6 +1,8 @@
 import Component from 'inferno-component';
 import View from './View';
+import Background from './Background';
 import DashboardContainer from '../Dashboard/Container';
+import Slideshow from '../UI/Slideshow/Slideshow';
 
 const IMAGE_CAP = 4;
 
@@ -78,6 +80,8 @@ class LoginContainer extends Component {
 	render() {
 		return (
 			<div id='login-root' className={this.props.animation}>
+				<Slideshow cap={IMAGE_CAP} />
+				<Background />
 				<View
 					bgImages={this.state.bgImages}
 					username={this.state.username}
