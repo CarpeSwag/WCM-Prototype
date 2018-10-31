@@ -5,6 +5,7 @@ import DashboardContainer from '../Dashboard/Container';
 import Slideshow from '../UI/Slideshow/Slideshow';
 
 const IMAGE_CAP = 4;
+const IMAGE_ROTATION = 5000;
 
 class LoginContainer extends Component {
 	constructor(props) {
@@ -35,7 +36,9 @@ class LoginContainer extends Component {
 	render() {
 		return (
 			<div id='login-root' className={this.props.animation}>
-				<Slideshow cap={IMAGE_CAP} />
+				<Slideshow 
+					cap={IMAGE_CAP}
+					rotationTime={IMAGE_ROTATION} />
 				<Background />
 				<View
 					bgImages={this.state.bgImages}

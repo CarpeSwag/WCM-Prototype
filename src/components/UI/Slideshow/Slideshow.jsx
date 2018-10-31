@@ -1,6 +1,8 @@
 import Component from 'inferno-component';
 import Image from './Image';
 
+const REMOVE_MS = 1000;
+
 class Slideshow extends Component {
 	constructor(props) {
 		super(props);
@@ -18,7 +20,7 @@ class Slideshow extends Component {
 	}
 	
 	componentDidMount() {
-		this.rotationTimeout = setTimeout(() => this.rotateImage(), 5000);
+		this.rotationTimeout = setTimeout(() => this.rotateImage(), this.props.rotationTime);
 	}
 	
 	componentDidUnmount() {
@@ -37,13 +39,13 @@ class Slideshow extends Component {
 		});
 		
 		// Rotate the next image
-		this.rotationTimeout = setTimeout(() => this.removeImage(), 1000);
+		this.rotationTimeout = setTimeout(() => this.removeImage(), REMOVE_MS);
 	}
 	
 	removeImage() {
 		// Cut out the bottom image
 		this.setState({bgImages: this.state.bgImages.slice(1)});
-		this.rotationTimeout = setTimeout(() => this.rotateImage(), 4000);
+		this.rotationTimeout = setTimeout(() => this.rotateImage(), this.props.rotationTime - REMOVE_MS);
 	}
 	
 	render() {
